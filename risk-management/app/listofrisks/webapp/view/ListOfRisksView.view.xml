@@ -1,0 +1,40 @@
+<mvc:View controllerName="listofrisks.listofrisks.controller.ListOfRisksView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Table id="idProductsTable"
+                inset="false"
+                items="{/ListOfRisks}">
+                <columns>
+                    <Column
+                        width="12em">
+                        <Text text="ID" />
+                    </Column>
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                        <Text text="Title" />
+                    </Column>
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                        <Text text="Owner" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text
+                                text="{ID}" />
+                            <Text
+                                text="{title}" />
+                            <Text
+                                text="{owner}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
