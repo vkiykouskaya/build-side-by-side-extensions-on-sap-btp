@@ -1,1 +1,1 @@
-using ListOfRisksService as service from '../../srv/list-of-risks-service';
+using RiskService as service from '../../srv/risk-service';

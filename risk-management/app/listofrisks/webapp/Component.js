@@ -5,12 +5,12 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "listofrisks/listofrisks/model/models"
+        "listofrisks/model/models"
     ],
     function (UIComponent, Device, models) {
         "use strict";
 
-        return UIComponent.extend("listofrisks.listofrisks.Component", {
+        return UIComponent.extend("listofrisks.Component", {
             metadata: {
                 manifest: "json"
             },

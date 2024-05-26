@@ -1,7 +1,7 @@
 {
     "name": "listofrisks",
     "version": "0.0.1",
-    "description": "List of Risks",
+    "description": "An SAP Fiori application.",
     "keywords": [
         "ui5",
         "openui5",

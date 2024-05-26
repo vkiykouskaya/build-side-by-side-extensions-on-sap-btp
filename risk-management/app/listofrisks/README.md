@@ -1,16 +1,16 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue May 21 2024 15:53:30 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Sun May 26 2024 07:16:20 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori-freestyle|
-|**App Generator Version**<br>1.13.4|
+|**App Generator Version**<br>1.13.5|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>simple|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/service/risk/
 |**Module Name**<br>listofrisks|
-|**Application Title**<br>List of Risks|
-|**Namespace**<br>listofrisks|
+|**Application Title**<br>List of |
+|**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.124.0|
 |**Enable Code Assist Libraries**<br>False|
@@ -19,7 +19,7 @@
 
 ## listofrisks
 
-List of Risks
+An SAP Fiori application.
 
 ### Starting the generated app
 
