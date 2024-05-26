@@ -5,7 +5,7 @@ sap.ui.define(
     function(BaseController) {
       "use strict";
   
-      return BaseController.extend("listofrisks.listofrisks.controller.App", {
+      return BaseController.extend("listofrisks.controller.App", {
         onInit: function() {
         }
       });

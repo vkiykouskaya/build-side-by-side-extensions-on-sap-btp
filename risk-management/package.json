@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/ux-specification": "^1.120.10"
+    "@sap/ux-specification": "^1.120.11"
   },
   "scripts": {
     "start": "cds-serve",
@@ -30,6 +30,8 @@
     }
   },
   "sapux": [
-    "app/risk-management"
+    "app/risk-management",
+    "app/listofrisks",
+    "app/listofrisks"
   ]
 }
