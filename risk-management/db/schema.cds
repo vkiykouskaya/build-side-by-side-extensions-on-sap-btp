@@ -28,6 +28,11 @@ entity Mitigations : cuid, managed {
                            on risks.miti = $self;
 }
 
+entity ListOfRisks : cuid, managed {
+        title                    : String(100);
+        owner                    : String;
+}
+
 entity Priority : CodeList {
         key code : String enum {
                     high   = 'H';
