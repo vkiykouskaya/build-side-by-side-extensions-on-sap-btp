@@ -3,34 +3,54 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
-            <Table id="idProductsTable"
+            <Table id="idRisksTable"
                 inset="false"
-                items="{/ListOfRisks}">
+                items="{/ListOfRisks}"
+                mode="SingleSelect">
+                <headerToolbar>
+			<OverflowToolbar id="_IDGenOverflowToolbar1">
+				<content>
+					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                    <Button id="editDescriptionBtn"
+                            text="Edit Description"
+                            press=".editDescription" 
+                            binding="{RiskService.editDescription}"/>
+					
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
                 <columns>
-                    <Column
+                    <Column id="_IDGenColumn1"
                         width="12em">
-                        <Text text="ID" />
+                        <Text id="_IDGenText1" text="ID" />
                     </Column>
-                    <Column
+                    <Column id="_IDGenColumn2"
                         minScreenWidth="Tablet"
                         demandPopin="true">
-                        <Text text="Title" />
+                        <Text id="_IDGenText2" text="Title" />
                     </Column>
-                    <Column
+                    <Column id="_IDGenColumn3"
                         minScreenWidth="Tablet"
                         demandPopin="true">
-                        <Text text="Owner" />
+                        <Text id="_IDGenText3" text="Owner" />
                     </Column>
+                    <!-- <Column id="_IDGenColumn4"
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                        <Text id="_IDGenText10" text="" />
+                    </Column> -->
                 </columns>
                 <items>
-                    <ColumnListItem vAlign="Middle">
+                    <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle">
                         <cells>
-                            <Text
+                            <Text id="_IDGenText4"
                                 text="{ID}" />
-                            <Text
+                            
+                            <Text id="_IDGenText5"
                                 text="{title}" />
-                            <Text
+                            <Text id="_IDGenText6"
                                 text="{owner}" />
+                            
                         </cells>
                     </ColumnListItem>
                 </items>
