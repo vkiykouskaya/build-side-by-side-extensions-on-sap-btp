@@ -1,77 +1,81 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    'sap/m/MessageToast',
-    'sap/m/MessageBox',
-    "sap/ui/core/UIComponent",
-    "sap/ui/model/odata/v4/ODataModel"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+    "sap/ui/model/odata/v4/ODataModel",
+    "sap/ui/model/json/JSONModel"
 ],
-function (Controller, MessageToast, MessageBox, UIComponent, ODataModel) {
+function (Controller, MessageToast, MessageBox, ODataModel, JSONModel) {
     "use strict";
 
     return Controller.extend("listofrisks.controller.ListOfRisks", {
         onInit: function () {
-            //UIComponent.prototype.init.apply(this, arguments);
-
             var oModel = new ODataModel({
                 serviceUrl: "/odata/v4/service/risk/",
                 synchronizationMode: "None"
             });
 
+            let oAppViewModel = new JSONModel({
+                newTitle: "",
+                selectedRiskId: "",
+                editBtnEnabled: false
+            }, "appView");
+
             this.getView().setModel(oModel);
+            this.getView().setModel(oAppViewModel, "appView");
+        },
+
+        onTableSelectionChange: function () {
+            this.getView().getModel("appView").setProperty("/editBtnEnabled", true);
         },
         
+        onEditBtnPress: function(){
+            let oView = this.getView();
+            const oTable = this.byId('idRisksTable');
+            const oSelectedItem = oTable.getSelectedItem();
+            const oSelectedContext = oSelectedItem.getBindingContext();
+            const iId = oSelectedContext.getObject().ID;
+            oView.getModel("appView").setProperty("/selectedRiskId", iId);
 
-        editDescription: async function(oEvent) {
+            if (!this.oDialog) {
+                this.oDialog = sap.ui.xmlfragment(oView.getId(), "listofrisks.view.fragments.EditTitle", this);
+                oView.addDependent(this.oDialog);
+            }
+
+            this.oDialog.open();
+        },
+
+        onSaveBtnPress: async function(oEvent) {
             const oModel = this.getView().getModel();
             const oTable = this.byId('idRisksTable');
             const oSelectedItem = oTable.getSelectedItem();
         
-            if (!oSelectedItem) {
-                MessageBox.alert("Please select a risk to edit its description.");
-                return;
-            }
-        
             const oSelectedContext = oSelectedItem.getBindingContext();
-            const sPath = oSelectedContext.getPath();
+            const iId = this.getView().getModel("appView").getProperty("/selectedRiskId");
+            const newTitle = this.getView().getModel("appView").getProperty("/newTitle");
             //const oData = oModel.getProperty(sPath);
             
-            const oAction = oModel.bindContext(`RiskService.editDescription(...)`, oSelectedContext, {
-                '$select': "ID"
-            });
-            //const oAction = oModel.bindContext(`/ListOfRisks(${oSelectedContext.getObject().ID})/RiskService.editDescription(...))`);
+            const oAction = oModel.bindContext(`RiskService.editTitle(...)`, oSelectedContext);
+            oAction.setParameter("ID", iId);
+            oAction.setParameter("newTitle", newTitle);
 
             try {
                 await oAction.execute();
                 MessageToast.show("Impact doubled successfully");
-                oModel.refresh();  // Refresh the model to reflect changes in the UI
+                oModel.refresh();
+                this.oDialog.close();
             } catch (oError) {
                 MessageBox.alert(oError.message, {
                     icon : MessageBox.Icon.ERROR,
                     title : "Error"
                 });
             }
+            this.getView().getModel("appView").setProperty("/newTitle", "");
         },
 
-        editDescription2: async function(oEvent) {
-            const oModel = this.getView().getModel();
-            const oTable = this.byId('idRisksTable');
-            const oSelectedItem = oTable.getSelectedItem();
-            //const oSelectedContext = oEvent.getSource().getBindingContext();
-            const oSelectedContext = oSelectedItem.getBindingContext();
-            console.log(oSelectedContext)
-            const oAction = oModel.bindContext("RiskService.editDescription(...)", oSelectedContext);
- 
-            oAction.invoke().then(
-                function () {
-                    MessageToast.show("Invoice created for sales order");
-                },
-                function (oError) {
-                    MessageBox.alert(oError.message, {
-                        icon : MessageBox.Icon.ERROR,
-                        title : "Error"
-                    });
-                }
-            );
+        onCloseEditDialogPress: function () {
+            this.oDialog.close();
+            this.getView().getModel("appView").setProperty("/newTitle", "");
         }
     });
 });

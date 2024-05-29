@@ -39,27 +39,15 @@ module.exports = cds.service.impl(async function() {
         })
     })
 
-    this.on('editDescription', async (req) => {
-        //const { ID } = req.data;
-        const ID = "20466922-7d57-4e76-b14c-e53fd97dcb11"
-        console.log("req is "+ req)
+    this.on('editTitle', async (req) => {
+        const ID = req.data.ID;
+        const newTitle = req.data.newTitle;
     
         try {
-            // Получение текущего значения impact
-            const risk = await SELECT.one.from(ListOfRisks).where({ ID });
-            console.log(risk)
-            console.log(ID)
-            // if (!risk) {
-            //     return req.error(404, 'Risk not found');
-            // }
+            const newImpact = newTitle;
     
-            // Удвоение значения impact
-            const newImpact = risk.title + " " + risk.title;
-    
-            // Обновление сущности
             await UPDATE(ListOfRisks).set({ title: newImpact }).where({ ID });
     
-            // Возвращение обновленного объекта
             const updatedRisk = await SELECT.one.from(ListOfRisks).where({ ID });
             return updatedRisk;
         } catch (error) {

@@ -6,16 +6,17 @@
             <Table id="idRisksTable"
                 inset="false"
                 items="{/ListOfRisks}"
-                mode="SingleSelect">
+                mode="SingleSelect"
+                selectionChange="onTableSelectionChange">
                 <headerToolbar>
 			<OverflowToolbar id="_IDGenOverflowToolbar1">
 				<content>
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                    <Button id="editDescriptionBtn"
-                            text="Edit Description"
-                            press=".editDescription" 
-                            binding="{RiskService.editDescription}"/>
-					
+                    <Button id="editTitleBtn"
+                            text="Edit Title"
+                            press=".onEditBtnPress" 
+                            binding="{RiskService.editTitle}"
+                            enabled="{appView>/editBtnEnabled}"/>
 				</content>
 			</OverflowToolbar>
 		</headerToolbar>
@@ -45,12 +46,10 @@
                         <cells>
                             <Text id="_IDGenText4"
                                 text="{ID}" />
-                            
                             <Text id="_IDGenText5"
                                 text="{title}" />
                             <Text id="_IDGenText6"
                                 text="{owner}" />
-                            
                         </cells>
                     </ColumnListItem>
                 </items>
