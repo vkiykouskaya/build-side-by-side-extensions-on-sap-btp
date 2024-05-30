@@ -43,16 +43,11 @@ module.exports = cds.service.impl(async function() {
         const ID = req.data.ID;
         const newTitle = req.data.newTitle;
     
-        try {
-            const newImpact = newTitle;
-    
-            await UPDATE(ListOfRisks).set({ title: newImpact }).where({ ID });
-    
-            const updatedRisk = await SELECT.one.from(ListOfRisks).where({ ID });
-            return updatedRisk;
+        try {    
+            await UPDATE(ListOfRisks).set({ title: newTitle }).where({ ID });
         } catch (error) {
             console.error(error);
-            return req.error(500, 'An error occurred while updating the risk');
+            return req.error(500, 'An error occurred while editing the title');
         }
     });
   });
