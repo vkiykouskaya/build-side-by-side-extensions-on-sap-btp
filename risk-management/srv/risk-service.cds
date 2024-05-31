@@ -13,17 +13,8 @@ service RiskService {
     entity ListOfRisks as select from rm.Risks {
         ID, title, owner
     } actions {
-        action editTitle(ID: UUID, newTitle: String) returns ListOfRisks
+        action editTitle(ID: UUID, newTitle: String)
     }
-    // annotate ListOfRisks actions {
-    //     editTitle;
-    // };
-    // annotate ListOfRisks with actions { 
-    //     //action editTitle() 
-    //     editTitle @Core.OperationAvailable: true;
-    // };
-
-    //action editTitle(ID : UUID) returns ListOfRisks;
 
     // BusinessPartner will be used later
     //@readonly entity BusinessPartners as projection on rm.BusinessPartners;

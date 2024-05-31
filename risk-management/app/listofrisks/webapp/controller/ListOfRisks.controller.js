@@ -53,7 +53,6 @@ function (Controller, MessageToast, MessageBox, ODataModel, JSONModel) {
             const oSelectedContext = oSelectedItem.getBindingContext();
             const iId = this.getView().getModel("appView").getProperty("/selectedRiskId");
             const newTitle = this.getView().getModel("appView").getProperty("/newTitle");
-            //const oData = oModel.getProperty(sPath);
             
             const oAction = oModel.bindContext(`RiskService.editTitle(...)`, oSelectedContext);
             oAction.setParameter("ID", iId);
@@ -61,7 +60,7 @@ function (Controller, MessageToast, MessageBox, ODataModel, JSONModel) {
 
             try {
                 await oAction.execute();
-                MessageToast.show("Impact doubled successfully");
+                MessageToast.show("Title edited successfully!");
                 oModel.refresh();
                 this.oDialog.close();
             } catch (oError) {
