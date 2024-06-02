@@ -50,4 +50,9 @@ module.exports = cds.service.impl(async function() {
             return req.error(500, 'An error occurred while editing the title');
         }
     });
-  });
+
+    this.before("READ", Risks, async (data) => {
+        const { Mitigations } = srv.entities;
+        const mitigationsArray = await srv.run (SELECT.from(Mitigations));
+    })
+});
