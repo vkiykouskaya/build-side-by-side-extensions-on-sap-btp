@@ -53,7 +53,13 @@ module.exports = cds.service.impl(async function() {
 
 
     // connect to remote service
-    const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER");
+    const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER", {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "credentials": {
+          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
+        }}
+    );
 
     /**
      * Event-handler for read-events on the BusinessPartners entity.
