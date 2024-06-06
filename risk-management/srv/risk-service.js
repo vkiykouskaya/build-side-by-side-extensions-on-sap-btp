@@ -51,7 +51,6 @@ module.exports = cds.service.impl(async function() {
         }
     });
 
-
     // connect to remote service
     const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER", {
         "kind": "odata-v2",
@@ -131,5 +130,8 @@ module.exports = cds.service.impl(async function() {
         return risks;
     });
 
-    
+    this.before("READ", Risks, async (data) => {
+        const { Mitigations } = srv.entities;
+        const mitigationsArray = await srv.run (SELECT.from(Mitigations));
+    });
 });
