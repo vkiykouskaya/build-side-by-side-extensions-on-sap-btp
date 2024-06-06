@@ -16,6 +16,6 @@ service RiskService {
         action editTitle(ID: UUID, newTitle: String)
     }
 
-    // BusinessPartner will be used later
-    //@readonly entity BusinessPartners as projection on rm.BusinessPartners;
+    //BusinessPartner will be used later
+    @readonly entity BusinessPartners as projection on rm.BusinessPartners;
 }
