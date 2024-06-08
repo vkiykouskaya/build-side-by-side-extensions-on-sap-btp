@@ -127,6 +127,8 @@ module.exports = cds.service.impl(async function() {
     });
 
     this.before("READ", Risks, async (data) => {
+        const srv = await cds.connect.to ('RiskService')
+
         const { Mitigations } = srv.entities;
         const mitigationsArray = await srv.run (SELECT.from(Mitigations));
     });
