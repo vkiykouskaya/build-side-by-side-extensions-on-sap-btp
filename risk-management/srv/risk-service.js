@@ -8,6 +8,8 @@ module.exports = cds.service.impl(async function() {
     // Define constants for the Risk and BusinessPartner entities from the risk-service.cds file
     const { Risks, BusinessPartners, ListOfRisks } = this.entities;
 
+    const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER");
+
     // This handler will be executed directly AFTER a READ operation on RISKS
     // With this we can loop through the received data set and manipulate the single risk entries
     this.after("READ", Risks, (data) => {
@@ -52,13 +54,7 @@ module.exports = cds.service.impl(async function() {
     });
 
     // connect to remote service
-    const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER", {
-        "kind": "odata-v2",
-        "model": "srv/external/API_BUSINESS_PARTNER",
-        "credentials": {
-          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
-        }}
-    );
+    
 
     /**
      * Event-handler for read-events on the BusinessPartners entity.
