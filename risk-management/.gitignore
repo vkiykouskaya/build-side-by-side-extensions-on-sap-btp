@@ -1,1 +1,5 @@
 /node_modules
+# added by cds
+.cdsrc-private.json
+.env
+app/node_modules
