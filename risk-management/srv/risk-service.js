@@ -68,7 +68,7 @@ module.exports = cds.service.impl(async function() {
         return await BPsrv.transaction(req).send({
             query: req.query,
             headers: {
-                apikey: process.env.apikey,
+                //apikey: process.env.apikey,
             },
         });
     });

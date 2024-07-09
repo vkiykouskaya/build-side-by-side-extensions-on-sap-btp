@@ -3,3 +3,6 @@
 .cdsrc-private.json
 .env
 app/node_modules
+gen/db/node_modules
+gen/srv/node_modules
+gen
