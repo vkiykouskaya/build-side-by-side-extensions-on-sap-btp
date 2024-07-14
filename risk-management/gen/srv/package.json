@@ -35,11 +35,7 @@
       "[production]": {
         "db": "hana",
         "auth": "xsuaa"
-      },
-      "[hybrid]": {
-        "auth": "xsuaa"
-      },
-      "auth": "xsuaa"
+      }
     }
   },
   "sapux": [

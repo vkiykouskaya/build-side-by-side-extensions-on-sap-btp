@@ -1,0 +1,10 @@
+COLUMN TABLE riskmanagement_ListOfRisks (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  title NVARCHAR(100),
+  owner NVARCHAR(5000),
+  PRIMARY KEY(ID)
+)
