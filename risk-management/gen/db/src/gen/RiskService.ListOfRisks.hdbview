@@ -1,5 +1,0 @@
-VIEW RiskService_ListOfRisks AS SELECT
-  Risks_0.ID,
-  Risks_0.title,
-  Risks_0.owner
-FROM riskmanagement_Risks AS Risks_0
