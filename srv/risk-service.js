@@ -1,6 +1,6 @@
 
 // Import the cds facade object (https://cap.cloud.sap/docs/node.js/cds-facade)
-const cds = require('@sap/cds')
+const cds = require('@sap/cds');
 
 // The service implementation with all service handlers
 module.exports = cds.service.impl(async function() {
@@ -9,10 +9,11 @@ module.exports = cds.service.impl(async function() {
     const { Risks, BusinessPartners, ListOfRisks } = this.entities;
 
     const BPsrv = await cds.connect.to("API_BUSINESS_PARTNER");
+    const cloudConnectorService = await cds.connect.to("API_CLOUD_CONNECTOR");
 
     // This handler will be executed directly AFTER a READ operation on RISKS
     // With this we can loop through the received data set and manipulate the single risk entries
-    this.after("READ", Risks, (data) => {
+    this.after("READ", Risks, async (data) => {
         // Convert to array, if it's only a single risk, so that the code won't break here
         const risks = Array.isArray(data) ? data : [data];
 
@@ -113,6 +114,17 @@ module.exports = cds.service.impl(async function() {
             }
         });
 
+        try { 
+            let response = await cloudConnectorService.send({
+                method: "GET",
+                path:'/'
+            });
+            console.log(response)
+        }  
+        catch (e) {
+            console.log(e)
+        }
+    
         // Convert in a map for easier lookup
         const bpMap = {};
         for (const businessPartner of busienssPartners)
