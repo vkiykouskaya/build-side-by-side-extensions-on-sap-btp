@@ -32,6 +32,12 @@
           "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
         }
       },
+      "API_CLOUD_CONNECTOR": {
+        "kind": "odata",
+        "credentials": {
+          "url": "http://localhost:9000"
+        }
+      },
       "[production]": {
         "db": "hana",
         "auth": "xsuaa"
